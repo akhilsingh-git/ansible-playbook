@@ -1,0 +1,19 @@
+---
+- name: Install Nginx
+  hosts: all
+  become: true
+  tasks:
+    - name: Install Nginx package
+      yum:
+        name: nginx
+        state: present
+
+    - name: Copy custom index.html
+      copy:
+        content: |
+          <html>
+          <head>
+            <title>Hello</title>
+          </head>
+          </html>
+        dest: /usr/share/nginx/html/index.html
