@@ -7,11 +7,13 @@ on:
 
 jobs:
   deploy:
-    runs-on: self-hosted
+    runs-on: amazon-linux-2
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Run Ansible playbook
-        run: |
-          ansible-playbook -i hosts webservers.yaml
+        uses: ansible/ansible-playbook-action@v2.1.0
+        with:
+          path: /home/ec2-user/webservers.yaml
+
